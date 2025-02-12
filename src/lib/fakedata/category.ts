@@ -1,0 +1,197 @@
+export const collections = [
+  {
+    id: "1",
+    name: "Men's Fashion",
+    slug: "mens-fashion",
+    children: [
+      { id: 11, name: "T-Shirts", slug: "t-shirts", types: ["clothing"] },
+      { id: 12, name: "Jeans", slug: "jeans", types: ["clothing"] },
+      { id: 13, name: "Shoes", slug: "shoes", types: ["footwear"] },
+      { id: 14, name: "Watches", slug: "watches", types: ["accessories"] },
+      { id: 15, name: "Jackets", slug: "jackets", types: ["clothing"] },
+      {
+        id: 16,
+        name: "Sunglasses",
+        slug: "sunglasses",
+        types: ["accessories"],
+      },
+      { id: 17, name: "Belts", slug: "belts", types: ["accessories"] },
+      { id: 18, name: "Formal Wear", slug: "formal-wear", types: ["clothing"] },
+      { id: 19, name: "Sportswear", slug: "sportswear", types: ["clothing"] },
+      { id: 20, name: "Hats", slug: "hats", types: ["accessories"] },
+    ],
+    featured: {
+      title: "Men's Fashion Collection",
+      image:
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=400",
+      href: "/mens-fashion/featured",
+    },
+  },
+  {
+    id: "2",
+    name: "Women's Fashion",
+    slug: "womens-fashion",
+    children: [
+      { id: 21, name: "Dresses", slug: "dresses", types: ["clothing"] },
+      { id: 22, name: "Handbags", slug: "handbags", types: ["accessories"] },
+      { id: 23, name: "Heels", slug: "heels", types: ["footwear"] },
+      { id: 24, name: "Jewelry", slug: "jewelry", types: ["accessories"] },
+      { id: 25, name: "Tops", slug: "tops", types: ["clothing"] },
+      { id: 26, name: "Leggings", slug: "leggings", types: ["clothing"] },
+      { id: 27, name: "Perfumes", slug: "perfumes", types: ["beauty"] },
+      {
+        id: 28,
+        name: "Sunglasses",
+        slug: "sunglasses",
+        types: ["accessories"],
+      },
+      { id: 29, name: "Winter Wear", slug: "winter-wear", types: ["clothing"] },
+      { id: 30, name: "Lingerie", slug: "lingerie", types: ["clothing"] },
+    ],
+    featured: {
+      title: "Women's Latest Trends",
+      image:
+        "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=400",
+      href: "/womens-fashion/featured",
+    },
+  },
+  {
+    id: "3",
+    name: "Electronics",
+    slug: "electronics",
+    children: [
+      { id: 31, name: "Smartphones", slug: "smartphones", types: ["gadgets"] },
+      { id: 32, name: "Laptops", slug: "laptops", types: ["gadgets"] },
+      {
+        id: 33,
+        name: "Headphones",
+        slug: "headphones",
+        types: ["accessories"],
+      },
+      {
+        id: 34,
+        name: "Smartwatches",
+        slug: "smartwatches",
+        types: ["gadgets"],
+      },
+      {
+        id: 35,
+        name: "Gaming Consoles",
+        slug: "gaming-consoles",
+        types: ["gaming"],
+      },
+      { id: 36, name: "Cameras", slug: "cameras", types: ["gadgets"] },
+      {
+        id: 37,
+        name: "Power Banks",
+        slug: "power-banks",
+        types: ["accessories"],
+      },
+      { id: 38, name: "Drones", slug: "drones", types: ["gadgets"] },
+      { id: 39, name: "Speakers", slug: "speakers", types: ["accessories"] },
+      { id: 40, name: "Monitors", slug: "monitors", types: ["gadgets"] },
+    ],
+    featured: {
+      title: "Tech Gadgets & Accessories",
+      image:
+        "https://images.unsplash.com/photo-1517059224940-d4af9eec41b1?auto=format&fit=crop&q=80&w=400",
+      href: "/electronics/featured",
+    },
+  },
+  {
+    id: "4",
+    name: "Home & Kitchen",
+    slug: "home-kitchen",
+    children: [
+      { id: 41, name: "Furniture", slug: "furniture", types: ["home"] },
+      { id: 42, name: "Kitchenware", slug: "kitchenware", types: ["home"] },
+      { id: 43, name: "Decor", slug: "decor", types: ["home"] },
+      { id: 44, name: "Bedding", slug: "bedding", types: ["home"] },
+      { id: 45, name: "Lighting", slug: "lighting", types: ["home"] },
+      { id: 46, name: "Storage Solutions", slug: "storage", types: ["home"] },
+      {
+        id: 47,
+        name: "Bathroom Accessories",
+        slug: "bathroom-accessories",
+        types: ["home"],
+      },
+      {
+        id: 48,
+        name: "Curtains & Blinds",
+        slug: "curtains-blinds",
+        types: ["home"],
+      },
+      {
+        id: 49,
+        name: "Cleaning Supplies",
+        slug: "cleaning-supplies",
+        types: ["home"],
+      },
+      { id: 50, name: "Carpets & Rugs", slug: "carpets-rugs", types: ["home"] },
+    ],
+    featured: {
+      title: "Stylish Home & Kitchen",
+      image:
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=400",
+      href: "/home-kitchen/featured",
+    },
+  },
+  {
+    id: "5",
+    name: "Sports & Outdoors",
+    slug: "sports-outdoors",
+    children: [
+      {
+        id: 51,
+        name: "Running Shoes",
+        slug: "running-shoes",
+        types: ["footwear"],
+      },
+      {
+        id: 52,
+        name: "Fitness Equipment",
+        slug: "fitness-equipment",
+        types: ["sports"],
+      },
+      { id: 53, name: "Bicycles", slug: "bicycles", types: ["sports"] },
+      {
+        id: 54,
+        name: "Camping Gear",
+        slug: "camping-gear",
+        types: ["outdoors"],
+      },
+      {
+        id: 55,
+        name: "Hiking Accessories",
+        slug: "hiking-accessories",
+        types: ["outdoors"],
+      },
+      { id: 56, name: "Swimwear", slug: "swimwear", types: ["clothing"] },
+      { id: 57, name: "Yoga Mats", slug: "yoga-mats", types: ["fitness"] },
+      {
+        id: 58,
+        name: "Golf Accessories",
+        slug: "golf-accessories",
+        types: ["sports"],
+      },
+      {
+        id: 59,
+        name: "Fishing Gear",
+        slug: "fishing-gear",
+        types: ["outdoors"],
+      },
+      {
+        id: 60,
+        name: "Winter Sports",
+        slug: "winter-sports",
+        types: ["sports"],
+      },
+    ],
+    featured: {
+      title: "Gear Up for Adventure",
+      image:
+        "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&q=80&w=400",
+      href: "/sports-outdoors/featured",
+    },
+  },
+];
