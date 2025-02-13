@@ -5,6 +5,11 @@ import { useState } from "react"
 import SwiperCore from "swiper"
 import { EffectFade, Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import slide1 from "@/assets/dynamic/01__desktop__20240516105934586.jpg"
+import slide2 from "@/assets/dynamic/ekushey_collection__3_1__20250206084003505.jpg"
+import slide3 from "@/assets/dynamic/slide3.jpg"
+
+import { Autoplay } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css"
@@ -15,24 +20,42 @@ const Banner = () => {
     // Fake data simulating API response
     const fakeSliderData = [
         {
-            title: "Sale of the summer collection",
-            imageUrl: "https://img.freepik.com/free-photo/beautiful-young-woman-wearing-sari_23-2149502953.jpg?ga=GA1.1.1088808881.1737022066&semt=ais_authors_boost"
+            title: "Embrace Tradition with Our Elegant and Stylish Punjabi Collection",
+            imageUrl: slide2.src
         },
         {
-            title: "Make your house into a home",
-            imageUrl: "https://img.freepik.com/free-photo/young-woman-beautiful-dress_1303-17512.jpg?ga=GA1.1.1088808881.1737022066&semt=ais_authors_boost"
+            title: "Discover the Essence of Luxury with Our Exclusive Attar Collection",
+            imageUrl: slide1.src
+        },
+
+        {
+            title: "Embrace Tradition with Our Elegant and Stylish Accessories Collection",
+            imageUrl: slide3.src
         },
     ]
+
 
     // State to store the slider data (using fake data)
     const [sliderData,] = useState(fakeSliderData)
 
     // Use Swiper modules
-    SwiperCore.use([EffectFade, Navigation])
+    SwiperCore.use([EffectFade, Navigation, Autoplay])
+
+    const [swiperInstance, setSwiperInstance] = useState<SwiperCore | null>(null);
+    const [currentImage, setCurrentImage] = useState<number>(0);
 
     return (
-        <section className="relative">
-            <Swiper navigation effect="fade" className="relative h-[calc(100vh-20vh)]">
+        <section className="relative lg:mb-20">
+            <Swiper effect="fade" className="relative lg:h-[calc(100vh-20vh)] h-[calc(60vh-10vh)] sm:h-[calc(50vh-10vh)]"
+                autoplay={{
+                    delay: 3000,
+                    pauseOnMouseEnter: true,
+                    disableOnInteraction: false,
+                    stopOnLastSlide: false,
+                }}
+                onSwiper={(swiper) => setSwiperInstance(swiper)}
+                onSlideChange={(swiper) => setCurrentImage(swiper.realIndex)}
+            >
                 {sliderData.map((slide, index) => (
                     <SwiperSlide key={index}>
                         <div
@@ -40,14 +63,14 @@ const Banner = () => {
                             style={{ backgroundImage: `url(${slide.imageUrl})` }} // Dynamically set background image
                         >
                             <div className="absolute inset-0 bg-black/20">
-                                <div className="container ">
-                                    <div className="max-w-xl pt-20">
-                                        <h2 className="mb-6 text-6xl font-bold leading-tight text-white">
+                                <div className="container flex items-start justify-center flex-col w-full h-full ">
+                                    <div className="max-w-2xl  ">
+                                        <h2 className="mb-6 md:text-4xl text-2xl lg:text-6xl font-bold leading-tight text-white">
                                             {slide.title} {/* Dynamically set title */}
                                         </h2>
                                         <a
                                             href="#"
-                                            className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-orange-600"
+                                            className="inline-flex items-center gap-2 rounded-full bg-primary/80 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary"
                                         >
                                             Shop now
                                             <ArrowRight className="h-4 w-4" />
@@ -59,14 +82,24 @@ const Banner = () => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="absolute -bottom-14 left-0 right-0 bg-white py-8 shadow-lg z-20 max-w-7xl rounded-r-full">
-                <div className="container mx-auto px-10 pl-20">
+            <div className="flex items-center gap-1 justify-end mx-20 relative z-20 -translate-y-8">
+                {fakeSliderData?.map((_, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => swiperInstance?.slideTo(idx)}
+                        className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 ${currentImage === idx ? "bg-primary" : "bg-gray-300"
+                            }`}
+                    />
+                ))}
+            </div>
+            <div className="lg:absolute  lg:-bottom-14 left-0 right-0 bg-white py-8 lg:shadow-lg z-20 max-w-7xl lg:rounded-r-full">
+                <div className="container mx-auto lg:px-10 lg:pl-20">
                     <ul className="grid grid-cols-1 gap-8 md:grid-cols-3">
                         <li className="flex items-start gap-4">
                             <Package className="h-8 w-8 text-orange-500" />
                             <div>
                                 <h4 className="font-semibold">Free Shipping</h4>
-                                <p className="text-sm text-gray-600">On purchases over $199</p>
+                                <p className="text-sm text-gray-600">On purchases over BDT 2500 tk</p>
                             </div>
                         </li>
 

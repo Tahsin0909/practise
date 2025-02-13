@@ -4,45 +4,38 @@ import { PluginAPI } from "tailwindcss/types/config";
 const config: Config = {
   darkMode: ["class"],
   content: [
-    "./index.html",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{html,js}",
-    "./components/**/*.{html,js}",
   ],
   theme: {
     extend: {
       container: {
         center: true,
-        padding: "2rem",
         screens: {
           sm: "100%",
           md: "100%",
-          lg: "1324px",
-          xl: "1580px",
+          lg: "100%",
+          xl: "100%",
+          xxl: "1680px",
         },
       },
       colors: {
-        primary_highlighted: "#1E90FF",
-        secondary_highlighted: "#B463FF",
-        third_highlighted: "#FFC431",
-        bg_secondary: "#2E2E2E",
-        fourthColor: "#1D1D1D",
-        card_bg: "#242424",
+        primary: "#ea580c",
+        accent: "#31B3BA",
+        secondary: "#1E285E",
+        title: "#290000",
+        cardTitle: "#2B2B2B",
+        subTitle: "#666666",
+        bg_footer: "#090C1D",
+
         warning: "#F97066",
         background: "var(--background)",
         foreground: "var(--foreground)",
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
+      },
+      fontFamily: {
+        dmSans: ["var(--font-dm-sans)", "sans-serif"],
+        robotoFlex: ["var(--font-roboto-flex)", "sans-serif"],
       },
     },
   },
@@ -77,6 +70,38 @@ const config: Config = {
           "@screen xl": {
             paddingTop: "4rem", // Adjust padding for extra-large screens
             paddingBottom: "4rem",
+          },
+        },
+        ".container": {
+          paddingLeft: "1rem", // Default horizontal padding
+          paddingRight: "1rem",
+
+          // For small screens (sm)
+          "@screen sm": {
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
+          },
+
+          // For medium screens (md)
+          "@screen md": {
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+          },
+
+          // For large screens (lg)
+          "@screen lg": {
+            paddingLeft: "10rem",
+            paddingRight: "10rem",
+          },
+
+          // For extra-large screens (xl)
+          "@screen xl": {
+            paddingLeft: "120px",
+            paddingRight: "120px",
+          },
+          "@screen 2xl": {
+            paddingLeft: "120px",
+            paddingRight: "120px",
           },
         },
         ".dashboard-containers": {
