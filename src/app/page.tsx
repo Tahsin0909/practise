@@ -1,7 +1,10 @@
 import Banner from '@/components/banner/Banner';
 import Footer from '@/components/footer/Footer';
 import Navbar from '@/components/header/Header';
-import React from 'react';
+import ProductCardApp from '@/feature/products/card/ProductsCard';
+
+
+
 
 const page = () => {
   return (
@@ -9,6 +12,7 @@ const page = () => {
       <Navbar />
       <Banner />
       <Footer />
+      <ProductCardApp />
     </div>
   );
 };
