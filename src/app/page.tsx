@@ -1,8 +1,7 @@
 import Banner from '@/components/banner/Banner';
 import Footer from '@/components/footer/Footer';
 import Navbar from '@/components/header/Header';
-import ProductCardApp from '@/feature/products/card/ProductsCard';
-
+import NewArrival from '@/feature/products/NewArrival';
 
 
 
@@ -11,8 +10,8 @@ const page = () => {
     <div>
       <Navbar />
       <Banner />
+      <NewArrival />
       <Footer />
-      <ProductCardApp />
     </div>
   );
 };

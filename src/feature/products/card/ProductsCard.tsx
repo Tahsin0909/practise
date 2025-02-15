@@ -1,83 +1,138 @@
-import React from 'react';
-import { ShoppingCart, Eye, Heart } from 'lucide-react';
+"use client"
+
+import { useState } from "react"
+import Image from "next/image"
+import { Heart, ShoppingCart, Eye } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 interface Product {
-    id: number;
-    name: string;
-    image: string;
-    price?: string;
-    category: string;
-}
-
-const products: Product[] = [
-    {
-        id: 1,
-        name: "Palm Ring",
-        image: "https://images.unsplash.com/photo-1598560917505-59a3ad559071?w=500&q=80",
-        category: "earrings"
-    },
-    {
-        id: 2,
-        name: "Birthstone Necklace for Women",
-        image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=500&q=80",
-        price: "$100.00",
-        category: "necklaces"
+    id: string
+    name: string
+    category: string
+    price: number
+    image: {
+        img1: string, img2: string
     }
-];
+}
 
-function ProductCard({ product }: { product: Product }) {
+interface ProductCardProps {
+    product: Product
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+    const [isHovered, setIsHovered] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+
+    const handleAddToCart = () => {
+        // Add your cart logic here
+        console.log("Added to cart:", product.name)
+    }
+
     return (
-        <div className="relative group">
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative aspect-square">
-                    <img
-                        src={product.image}
+        <>
+            <div className="group relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+                {/* Product Image */}
+                <div className="relative aspect-square overflow-hidden bg-gray-100 rounded-sm transition-all duration-300" >
+                    <Image
+                        src={isHovered ? product.image.img2 : product.image.img1}
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        width={400}
+                        height={400}
+                        className={cn("object-cover w-full h-full transition-all duration-300", isHovered && "scale-110")}
                     />
-                    <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="p-2 bg-white rounded-full shadow hover:bg-gray-50">
-                            <ShoppingCart className="w-5 h-5" />
-                        </button>
-                        <button className="p-2 bg-white rounded-full shadow hover:bg-gray-50">
-                            <Eye className="w-5 h-5" />
-                        </button>
-                        <button className="p-2 bg-white rounded-full shadow hover:bg-gray-50">
-                            <Heart className="w-5 h-5" />
-                        </button>
-                    </div>
-                </div>
-                <div className="p-4">
-                    <h3 className="text-lg font-medium text-gray-900">{product.name}</h3>
-                    <div className="flex justify-between items-center mt-2">
-                        <span className="text-sm text-gray-500">{product.category}</span>
-                        {product.price && (
-                            <span className="text-gray-900 font-medium">{product.price}</span>
+
+                    {/* Add to Cart Overlay */}
+                    {/* <div
+                        className={cn(
+                            "absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300",
+                            isHovered ? "opacity-100" : "opacity-0",
                         )}
-                    </div>
-                    {!product.price && (
-                        <button className="mt-2 w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                    >
+                        <Button
+                            variant="default"
+                            className="bg-white text-black hover:bg-primary hover:text-white transition-colors"
+                            onClick={handleAddToCart}
+                        >
                             Add to Cart
-                        </button>
-                    )}
+                        </Button>
+                    </div> */}
+
+                    {/* Icon Buttons */}
+                    <div
+                        className={cn(
+                            "absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2 transition-all duration-300",
+                            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+                        )}
+                    >
+                        <Button
+                            size="icon"
+                            variant="secondary"
+                            className="h-10 w-10 rounded-full bg-white hover:bg-primary hover:text-white transition-colors"
+                            onClick={handleAddToCart}
+                        >
+                            <ShoppingCart className="h-4 w-4" />
+                        </Button>
+                        <Button
+                            size="icon"
+                            variant="secondary"
+                            className="h-10 w-10 rounded-full bg-white hover:bg-primary hover:text-white transition-colors"
+                            onClick={() => setShowModal(true)}
+                        >
+                            <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                            size="icon"
+                            variant="secondary"
+                            className="h-10 w-10 rounded-full bg-white hover:bg-primary hover:text-white transition-colors"
+                        >
+                            <Heart className="h-4 w-4" />
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Product Info */}
+                <div className="mt-4 space-y-2">
+                    <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
+                    <p className="text-sm text-gray-500">{product.category}</p>
+                    <p className="text-lg font-semibold">${product.price.toFixed(2)}</p>
                 </div>
             </div>
-        </div>
-    );
+
+            {/* Quick View Modal */}
+            <Dialog open={showModal} onOpenChange={setShowModal}>
+                <DialogContent className="max-w-3xl">
+                    <DialogHeader>
+                        <DialogTitle>Quick View</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4 md:grid-cols-2">
+                        <div className="relative aspect-square">
+                            <Image
+                                src={product.image.img1}
+                                alt={product.name}
+                                fill
+                                className="object-cover rounded-lg"
+                            />
+                        </div>
+                        <div className="flex flex-col justify-between">
+                            <div className="space-y-4">
+                                <h2 className="text-2xl font-bold">{product.name}</h2>
+                                <p className="text-gray-500">{product.category}</p>
+                                {product.price && <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>}
+                                <p className="text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                                    dolore magna aliqua.
+                                </p>
+                            </div>
+                            <Button className="mt-4 w-full" onClick={handleAddToCart}>
+                                Add to Cart
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+        </>
+    )
 }
 
-function ProductCardApp() {
-    return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default ProductCardApp;
