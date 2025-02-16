@@ -1,1 +1,1 @@
-export type Collections = RouterOutputs["collection"]["all"] | undefined;
+// export type Collections = RouterOutputs["collection"]["all"] | undefined;
