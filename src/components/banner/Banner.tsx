@@ -5,9 +5,9 @@ import { useState } from "react"
 import SwiperCore from "swiper"
 import { EffectFade, Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import slide1 from "@/assets/dynamic/01__desktop__20240516105934586.jpg"
-import slide2 from "@/assets/dynamic/ekushey_collection__3_1__20250206084003505.jpg"
-import slide3 from "@/assets/dynamic/slide3.jpg"
+import slide1 from "@/assets/dynamic/photo-1.jpg"
+import slide2 from "@/assets/dynamic/photo-4.jpg"
+import slide3 from "@/assets/dynamic/photo-6.jpg"
 
 import { Autoplay } from "swiper/modules";
 

@@ -35,12 +35,23 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="group relative" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
                 {/* Product Image */}
                 <div className="relative aspect-square overflow-hidden bg-gray-100 rounded-sm transition-all duration-300" >
+                    {/* First Image */}
                     <Image
-                        src={isHovered ? product.image.img2 : product.image.img1}
+                        src={product.image.img1}
                         alt={product.name}
                         width={400}
                         height={400}
-                        className={cn("object-cover w-full h-full transition-all duration-300", isHovered && "scale-110")}
+                        className="absolute inset-0 object-cover w-full h-full transition-opacity duration-500 ease-in-out"
+                        style={{ opacity: isHovered ? 0 : 1 }}
+                    />
+                    {/* Second Image */}
+                    <Image
+                        src={product.image.img2}
+                        alt={product.name}
+                        width={400}
+                        height={400}
+                        className="absolute inset-0 object-cover w-full h-full transition-opacity duration-500 ease-in-out"
+                        style={{ opacity: isHovered ? 1 : 0 }}
                     />
 
                     {/* Add to Cart Overlay */}

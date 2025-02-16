@@ -197,7 +197,7 @@ export function getCategoryContent(categoryId: string, ref: any, handleCategoryH
 
     return (
         <div className="flex items-start justify-center gap-6 relative">
-            <div className="absolute -top-8 right-2 z-40">
+            <div className="absolute -top-8 right-2 z-40 md:hidden">
                 <X onClick={() => handleCategoryHover(null)} className="w-8 text-black cursor-pointer" />
             </div>
             <div className="">

@@ -8,7 +8,6 @@ import { toggleDrawer } from './CartSlice';
 const CartDrawer = () => {
     const dispatch = useDispatch();
     const { isOpen } = useSelector((state: RootState) => state.cart);
-    console.log(isOpen);
     const sidebarItems = [
         { id: 1, title: "Dashboard", description: "View your dashboard" },
         { id: 2, title: "Profile", description: "Manage your profile" },

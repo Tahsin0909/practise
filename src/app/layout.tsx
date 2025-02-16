@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/redux/Provider";
 import CartDrawer from "@/feature/cart/CartDrawer";
+import SmoothScrolling from "@/components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReduxProvider>
-          <CartDrawer />
-          {children}
-        </ReduxProvider>
+        <SmoothScrolling>
+          <ReduxProvider>
+            <CartDrawer />
+            {children}
+          </ReduxProvider>
+        </SmoothScrolling>
       </body>
     </html>
   );
 }
+
+// https://i.ibb.co.com/8nLJ4vB3/image.png
