@@ -3,7 +3,7 @@ import { ShoppingBag } from 'lucide-react';
 import acc from "@/assets/dynamic/ssss(1).jpg"
 function AllCollection() {
     return (
-        <div className="min-h-screen bg-gray-50 container section-gap">
+        <div className="bg-gray-50 container section-gap">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Left Featured Section */}
                 <div className="relative group overflow-hidden rounded-2xl">

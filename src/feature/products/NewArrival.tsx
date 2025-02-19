@@ -4,38 +4,112 @@ import ProductCard from './card/ProductsCard';
 
 const products = [
     {
-        id: "1",
-        name: "Palm Ring",
-        category: "earrings",
-        price: 100.0,
-        image: { img1: "https://i.ibb.co.com/FqC3KKBY/242534-4-5-20240922130028605-width-1024.jpg", img2: "https://i.ibb.co.com/zHC8PLGk/242534cu1-4-5-20241016071125135-width-1024.jpg" }
+        "id": "1",
+        "title": "Product 1",
+        "description": "This is a description of Product 1.",
+        "price": 89.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Red",
+        "fabric": "Cotton",
+        "sleeve": "Full Sleeve",
+        "style": "Casual"
     },
     {
-        id: "2",
-        name: "Birthstone Necklace for Women",
-        category: "necklaces",
-        price: 100.0,
-        image: {
-            img1: "https://i.ibb.co.com/SwpFghZD/252516-4-5-20250201073723631-width-1024.jpg", img2: "https://i.ibb.co.com/rfxH8L4r/252516cu1-4-5-20250201073724576-width-1024.jpg"
-        }
+        "id": "2",
+        "title": "Product 2",
+        "description": "This is a description of Product 2.",
+        "price": 79.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Blue",
+        "fabric": "Silk",
+        "sleeve": "Half Sleeve",
+        "style": "Formal"
     },
     {
-        id: "4",
-        name: "Palm Ring",
-        category: "earrings",
-        price: 100.0,
-        image: { img1: "https://i.ibb.co.com/FqC3KKBY/242534-4-5-20240922130028605-width-1024.jpg", img2: "https://i.ibb.co.com/zHC8PLGk/242534cu1-4-5-20241016071125135-width-1024.jpg" }
+        "id": "3",
+        "title": "Product 3",
+        "description": "This is a description of Product 3.",
+        "price": 129.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Black",
+        "fabric": "Denim",
+        "sleeve": "Sleeveless",
+        "style": "Traditional"
     },
     {
-        id: "3",
-        name: "Birthstone Necklace for Women",
-        category: "necklaces",
-        price: 100.0,
-        image: {
-            img1: "https://i.ibb.co.com/SwpFghZD/252516-4-5-20250201073723631-width-1024.jpg", img2: "https://i.ibb.co.com/rfxH8L4r/252516cu1-4-5-20250201073724576-width-1024.jpg"
-        }
+        "id": "4",
+        "title": "Product 4",
+        "description": "This is a description of Product 4.",
+        "price": 99.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Green",
+        "fabric": "Linen",
+        "sleeve": "Full Sleeve",
+        "style": "Biker"
     },
+    {
+        "id": "5",
+        "title": "Product 5",
+        "description": "This is a description of Product 5.",
+        "price": 119.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "White",
+        "fabric": "Jacquard",
+        "sleeve": "Half Sleeve",
+        "style": "Regular"
+    }
 ]
+
 
 
 

@@ -1,61 +1,117 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search } from "lucide-react"
+import { Search, X } from "lucide-react"
 import ProductCard from "@/feature/products/card/ProductsCard"
 import ProductFilters from "@/feature/products/ProductsFilter"
 
 const products = [
     {
-        id: "1",
-        name: "Palm Ring",
-        category: "earrings",
-        price: 8500,
-        size: "S",
-        color: "Gold",
-        image: {
-            img1: "https://i.ibb.co.com/FqC3KKBY/242534-4-5-20240922130028605-width-1024.jpg",
-            img2: "https://i.ibb.co.com/zHC8PLGk/242534cu1-4-5-20241016071125135-width-1024.jpg",
-        },
+        "id": "1",
+        "title": "Product 1",
+        "description": "This is a description of Product 1.",
+        "price": 89.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Red",
+        "fabric": "Cotton",
+        "sleeve": "Full Sleeve",
+        "style": "Casual"
     },
     {
-        id: "2",
-        name: "Birthstone Necklace for Women",
-        category: "necklaces",
-        price: 12000,
-        size: "M",
-        color: "Silver",
-        image: {
-            img1: "https://i.ibb.co.com/SwpFghZD/252516-4-5-20250201073723631-width-1024.jpg",
-            img2: "https://i.ibb.co.com/rfxH8L4r/252516cu1-4-5-20250201073724576-width-1024.jpg",
-        },
+        "id": "2",
+        "title": "Product 2",
+        "description": "This is a description of Product 2.",
+        "price": 79.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Blue",
+        "fabric": "Silk",
+        "sleeve": "Half Sleeve",
+        "style": "Formal"
     },
     {
-        id: "3",
-        name: "Diamond Stud Earrings",
-        category: "earrings",
-        price: 15000,
-        size: "L",
-        color: "White Gold",
-        image: {
-            img1: "https://i.ibb.co.com/FqC3KKBY/242534-4-5-20240922130028605-width-1024.jpg",
-            img2: "https://i.ibb.co.com/zHC8PLGk/242534cu1-4-5-20241016071125135-width-1024.jpg",
-        },
+        "id": "3",
+        "title": "Product 3",
+        "description": "This is a description of Product 3.",
+        "price": 129.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Black",
+        "fabric": "Denim",
+        "sleeve": "Sleeveless",
+        "style": "Traditional"
     },
     {
-        id: "4",
-        name: "Pearl Bracelet",
-        category: "bracelets",
-        price: 9500,
-        size: "M",
-        color: "Pearl",
-        image: {
-            img1: "https://i.ibb.co.com/SwpFghZD/252516-4-5-20250201073723631-width-1024.jpg",
-            img2: "https://i.ibb.co.com/rfxH8L4r/252516cu1-4-5-20250201073724576-width-1024.jpg",
-        },
+        "id": "4",
+        "title": "Product 4",
+        "description": "This is a description of Product 4.",
+        "price": 99.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "Green",
+        "fabric": "Linen",
+        "sleeve": "Full Sleeve",
+        "style": "Biker"
     },
+    {
+        "id": "5",
+        "title": "Product 5",
+        "description": "This is a description of Product 5.",
+        "price": 119.99,
+        "thumbnail": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "images": [
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7152.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7157.jpg?v=1727157514",
+            "https://dorjibari.com.bd/cdn/shop/files/GH7A7160.jpg?v=1727157514"
+        ],
+        "size": ["32", "36", "40", "44", "48", "52"],
+        "category": "clothing",
+        "color": "White",
+        "fabric": "Jacquard",
+        "sleeve": "Half Sleeve",
+        "style": "Regular"
+    }
 ]
-
 function Page() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [filteredProducts, setFilteredProducts] = useState(products)
@@ -66,38 +122,48 @@ function Page() {
     const [selectedSize, setSelectedSize] = useState<string | null>(null)
     const [selectedPrice, setSelectedPrice] = useState<string | null>(null)
     const [selectedSortBy, setSelectedSortBy] = useState<string | null>(null)
+
+    // State to track active filters
+    const isFilterActive = !!(searchQuery || selectedColor || selectedSize || selectedPrice || selectedSortBy)
+
+
+
     useEffect(() => {
-        let result = [...products]
+        let result = [...products];
 
         // Apply search filter
         if (searchQuery) {
-            result = result.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            result = result.filter((product) =>
+                product.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
         }
 
         // Apply size filter
-        if (selectedSize !== "all") {
-            result = result.filter((product) => product.size === selectedSize)
+        if (selectedSize && selectedSize !== "all") {
+            result = result.filter((product) => product.size.includes(selectedSize));
         }
 
         // Apply color filter
-        if (selectedColor !== "all") {
-            result = result.filter((product) => product.color === selectedColor)
+        if (selectedColor && selectedColor !== "all") {
+            result = result.filter((product) => product.color === selectedColor);
         }
 
-        // Apply price range filter
-        // result = result.filter((product) => product.price >= priceRange.min && product.price <= priceRange.max)
-
-        // Apply sorting
-
-        setFilteredProducts(result)
-    }, [searchQuery, selectedSize, selectedColor,])
+        setFilteredProducts(result);
+    }, [searchQuery, selectedSize, selectedColor]);
 
 
 
+    const handleClearFilters = () => {
+        setSearchQuery("")
+        setSelectedColor(null)
+        setSelectedSize(null)
+        setSelectedPrice(null)
+        setSelectedSortBy(null)
+    }
 
 
     return (
-        <div className="min-h-screen container mx-auto ">
+        <div className="min-h-screen container mx-auto section-gap">
             {/* Header */}
             <header className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">Our Collection</h1>
@@ -105,19 +171,34 @@ function Page() {
 
             {/* Filters Section */}
             <div className="mb-8">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <div className="flex flex-col md:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     {/* Search Bar */}
-                    <div className="relative flex-1 max-w-xs">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-gray-400" />
+                    <div className="flex sm:flex-row flex-col items-start md:items-center justify-start md:justify-center gap-2 md:gap-4">
+                        <div className="relative flex-1 max-w-xs">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Search className="h-5 w-5 text-gray-400" />
+                            </div>
+                            <input
+                                type="text"
+                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-[1px] focus:ring-primary  sm:text-sm"
+                                placeholder="Search products..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            {/* Clear Filters Button */}
+
                         </div>
-                        <input
-                            type="text"
-                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            placeholder="Search products..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
+                        <div>
+                            {isFilterActive && (
+                                <button
+                                    className="text-gray-300 hover:underline flex items-center justify-center text-nowrap"
+                                    onClick={handleClearFilters}
+                                >
+                                    <X size={15} />
+                                    <span> Clear Filters</span>
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     <ProductFilters selectedColor={selectedColor} selectedPrice={selectedPrice} selectedSize={selectedSize} selectedSortBy={selectedSortBy} setSelectedColor={setSelectedColor} setSelectedPrice={setSelectedPrice} setSelectedSize={setSelectedSize} setSelectedSortBy={setSelectedSortBy} />

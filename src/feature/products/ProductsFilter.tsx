@@ -11,10 +11,10 @@ export default function ProductFilters({ selectedColor, setSelectedColor, select
 
 
     const filters = {
+        sortBy: ["Newest", "Price: Low to High", "Price: High to Low"],
+        price: ["Under ৳1000", "৳1000 - ৳5000", "৳5000 - ৳10000", "Over ৳10000"],
         color: ["Black", "White", "Gold", "Silver", "Rose Gold"],
         size: ["XS", "S", "M", "L", "XL"],
-        price: ["Under ৳1000", "৳1000 - ৳5000", "৳5000 - ৳10000", "Over ৳10000"],
-        sortBy: ["Newest", "Price: Low to High", "Price: High to Low"],
     }
 
     const toggleFilter = (filterName: string) => {
@@ -31,7 +31,7 @@ export default function ProductFilters({ selectedColor, setSelectedColor, select
 
     return (
         <div className="relative border-b border-gray-200">
-            <div className="flex space-x-8 px-4 py-4">
+            <div className="flex sm:space-x-8 space-x-4 px-4 py-4">
                 {Object.entries(filters).map(([filterName, options]) => (
                     <div key={filterName} className="relative">
                         <button
@@ -45,13 +45,13 @@ export default function ProductFilters({ selectedColor, setSelectedColor, select
                         </button>
 
                         {activeFilter === filterName && (
-                            <div className="absolute left-0 top-full z-10 mt-2 w-48 bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                            <div className="absolute left-0 top-full z-10 mt-2 w-fit lg:w-48 border bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                                 <div className="py-1">
                                     {options.map((option) => (
                                         <button
                                             key={option}
                                             onClick={() => handleOptionClick(filterName, option)} // Handle option click
-                                            className={`block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 ${(filterName === "color" && selectedColor === option) ||
+                                            className={`block text-nowrap w-full px-2 sm:px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 ${(filterName === "color" && selectedColor === option) ||
                                                 (filterName === "size" && selectedSize === option) ||
                                                 (filterName === "price" && selectedPrice === option) ||
                                                 (filterName === "sortBy" && selectedSortBy === option)
