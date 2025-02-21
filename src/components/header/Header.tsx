@@ -75,9 +75,9 @@ export default function Navbar() {
                                 <CartIcon />
                             </div>
 
-                            <button className="text-gray-700 hover:text-primary">
+                            <Link href={"/logIn"} className="text-gray-700 hover:text-primary">
                                 <User className="h-6 w-6" />
-                            </button>
+                            </Link>
                             <button
                                 className="md:hidden text-gray-700"
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

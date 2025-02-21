@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from './card/ProductsCard';
+import Link from 'next/link';
 
 
 const products = [
@@ -125,9 +126,9 @@ const NewArrival = () => {
                         </h2>
                         <div className="h-1 w-20 bg-gray-900 rounded" />
                     </div>
-                    <button className="inline-flex items-center sm:px-6 px-3 py-2 sm:py-3 border border-gray-900 text-base font-medium rounded-full text-gray-900 bg-transparent hover:bg-primary hover:border-primary hover:text-white transition-colors duration-200">
+                    <Link href={"/products"} className="inline-flex items-center sm:px-6 px-3 py-2 sm:py-3 border border-gray-900 text-base font-medium rounded-full text-gray-900 bg-transparent hover:bg-primary hover:border-primary hover:text-white transition-colors duration-200">
                         View All Collections
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-10">
