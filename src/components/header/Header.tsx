@@ -196,7 +196,7 @@ export function getCategoryContent(categoryId: string, ref: any, handleCategoryH
     if (!category) return null;
 
     return (
-        <div className="flex items-start justify-center gap-6 relative">
+        <div ref={ref} className="flex items-start justify-center gap-6 relative">
             <div className="absolute -top-8 right-2 z-40 md:hidden">
                 <X onClick={() => handleCategoryHover(null)} className="w-8 text-black cursor-pointer" />
             </div>
@@ -206,7 +206,7 @@ export function getCategoryContent(categoryId: string, ref: any, handleCategoryH
                     {category.children.map((child) => (
                         <li key={child.id}>
                             <Link
-                                href={`/${category.slug}/${child.slug}`}
+                                href={`/products?${category.slug}&${child.slug}`}
                                 className="text-gray-600 hover:text-primary transition-colors"
                             >
                                 {child.name}
@@ -220,7 +220,7 @@ export function getCategoryContent(categoryId: string, ref: any, handleCategoryH
             {category.featured && (
                 <div ref={ref} className="col-span-1">
                     <div className=" rounded-lg overflow-hidden relative">
-                        <Link href={category.featured.href} className="group ">
+                        <Link href={`/products?${category.slug}&${category.featured.href}`} className="group ">
                             <img
                                 src={category.featured.image}
                                 alt={category.featured.title}
