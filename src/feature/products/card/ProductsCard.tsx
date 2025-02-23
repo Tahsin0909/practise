@@ -2,13 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { addToCart } from "@/feature/cart/CartSlice"
 import { cn } from "@/lib/utils"
-import { Eye, Heart, ShoppingCart } from "lucide-react"
+import { Eye, Heart } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
-import { useDispatch } from "react-redux"
 
 type Product = {
     id: string;
@@ -34,7 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     const [showModal, setShowModal] = useState(false)
     const ref = useRef<HTMLDivElement>(null);
     const navigate = useRouter();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const handleDetails = (event: React.MouseEvent, id: string) => {
         if (ref.current && ref.current.contains(event.target as Node)) {
             return; // Prevent triggering if clicking inside ref
@@ -42,16 +40,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         navigate.push(`/products/${id}`); // Redirect to the product details page
     };
 
-    const handleCart = async () => {
-
-        dispatch(addToCart({
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            quantity: 1,
-            image: product.thumbnail[0],
-            size: "42"
-        }));
+    const handleCart = async (id: string) => {
+        navigate.push(`/products/${id}`);
     };
 
     return (
@@ -87,14 +77,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                             isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
                         )}
                     >
-                        <Button
-                            size="icon"
-                            variant="secondary"
-                            className="h-10 w-10 rounded-full bg-white hover:bg-primary hover:text-white transition-colors"
-                            onClick={handleCart}
-                        >
-                            <ShoppingCart className="h-4 w-4" />
-                        </Button>
                         <Button
                             size="icon"
                             variant="secondary"
@@ -148,8 +130,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                                     dolore magna aliqua.
                                 </p>
                             </div>
-                            <Button className="mt-4 w-full" onClick={handleCart}>
-                                Add to Cart
+                            <Button className="mt-4 w-full" onClick={() => handleCart(product.id)}>
+                                View
                             </Button>
                         </div>
                     </div>

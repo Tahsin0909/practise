@@ -68,14 +68,17 @@ export default function Navbar() {
                             </div>
 
                             {/* Icons */}
-                            <button className="text-gray-700 hover:text-primary">
+                            <Link href={"/favorite"} className="text-gray-700 hover:text-primary">
                                 <Heart className="h-6 w-6" />
-                            </button>
+                            </Link>
                             <div className="hover:cursor-pointer">
                                 <CartIcon />
                             </div>
 
                             <Link href={"/logIn"} className="text-gray-700 hover:text-primary">
+                                <User className="h-6 w-6" />
+                            </Link>
+                            <Link href={"/profile"} className="text-gray-700 hover:text-primary p-1 border rounded-full">
                                 <User className="h-6 w-6" />
                             </Link>
                             <button

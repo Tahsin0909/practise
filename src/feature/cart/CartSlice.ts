@@ -49,9 +49,40 @@ const cartSlice = createSlice({
     toggleDrawer: (state) => {
       state.isOpen = !state.isOpen;
     },
+    increaseQuantity: (
+      state,
+      action: PayloadAction<{ id: string; size: string }>
+    ) => {
+      const item = state.cart.find(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+      if (item) {
+        item.quantity += 1;
+      }
+    },
+    decreaseQuantity: (
+      state,
+      action: PayloadAction<{ id: string; size: string }>
+    ) => {
+      const item = state.cart.find(
+        (item) =>
+          item.id === action.payload.id && item.size === action.payload.size
+      );
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, toggleDrawer } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  toggleDrawer,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlice.actions;
+
 export default cartSlice.reducer;
