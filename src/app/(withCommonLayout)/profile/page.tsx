@@ -1,4 +1,5 @@
 import SharedTabs from '@/components/sharedTabs/SharedTabs';
+import ProfileCard from '@/feature/profile/ProfileCard';
 import React from 'react';
 
 
@@ -23,7 +24,8 @@ const TAB_ITEMS = [
 
 const page = () => {
     return (
-        <div className='container section-gap'>
+        <div className='container section-gap flex items-start justify-between'>
+            <ProfileCard />
             <SharedTabs tabItems={TAB_ITEMS} />
         </div>
     );
