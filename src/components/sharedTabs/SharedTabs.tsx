@@ -48,7 +48,7 @@ export default function SharedTabs({ tabItems }: SharedTabsProps) {
             </TabsList>
 
             {tabItems.map(({ value, component }) => (
-                <TabsContent key={value} value={value}>
+                <TabsContent key={value} value={value} className=" w-full overflow-x-scroll">
                     {component}
                 </TabsContent>
             ))}

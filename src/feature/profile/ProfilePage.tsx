@@ -8,18 +8,18 @@ const TAB_ITEMS = [
     {
         value: 'all-items', label: 'All Items', component: <AllProducts />
     },
-    {
-        value: 'ordered-items', label: 'Ordered Items', component: <div>dfd</div>
-    },
-    {
-        value: 'returned-project', label: 'Return Order', component: <div>dfdfw</div>
-    },
+    // {
+    //     value: 'ordered-items', label: 'Ordered Items', component: <div>dfd</div>
+    // },
+    // {
+    //     value: 'returned-project', label: 'Return Order', component: <div>dfdfw</div>
+    // },
 ];
 
 
 const ProfilePage = () => {
     return (
-        <div className='container section-gap flex items-start gap-10'>
+        <div className='container section-gap flex xl:flex-row flex-col items-start gap-10 overflow-x-auto'>
             <ProfileCard />
             <SharedTabs tabItems={TAB_ITEMS} />
         </div>

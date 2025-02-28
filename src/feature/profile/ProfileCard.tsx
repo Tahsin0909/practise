@@ -15,7 +15,7 @@ const ProfileCard = () => {
     };
 
     return (
-        <div className="max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+        <div className="max-w-sm min-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div className="relative h-32 bg-gradient-to-r from-orange-200 to-orange-100">
                 <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2">
                     <Image
