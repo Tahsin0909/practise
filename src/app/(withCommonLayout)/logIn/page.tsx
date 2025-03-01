@@ -1,22 +1,15 @@
 "use client";
 
+import { useLoginMutation } from "@/redux/api/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+
 const formSchema = z.object({
-    email: z
-        .string()
-        .email("Please enter a valid email address")
-        .refine(
-            (email) => {
-                const domain = email.split("@")[1];
-                return domain === "gmail.com" || domain === "yahoo.com";
-            },
-            { message: "Only Gmail and Yahoo email addresses are allowed" }
-        ),
+    email: z.string().email("Please enter a valid email address"),
     password: z
         .string()
         .min(8, "Password must be at least 8 characters")
@@ -26,6 +19,7 @@ const formSchema = z.object({
 
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
+    const [login] = useLoginMutation();
 
     const {
         handleSubmit,
@@ -43,9 +37,14 @@ export default function LoginForm() {
     async function onSubmit(values: z.infer<typeof formSchema>) {
         setIsLoading(true);
         try {
-            console.log(values);
+            const response = await login({
+                email: values.email,
+                password: values.password,
+            }).unwrap();
+            console.log("Login successful:", response);
+            // Handle success (e.g., store token, redirect user)
         } catch (error) {
-            console.error(error);
+            console.error("Login failed:", error);
         } finally {
             setIsLoading(false);
         }
@@ -95,7 +94,7 @@ export default function LoginForm() {
                         className="w-full p-2 text-white bg-primary/80 hover:bg-primary rounded-xl"
                         disabled={isLoading}
                     >
-                        Sign in
+                        {isLoading ? "Signing in..." : "Sign in"}
                     </button>
                 </form>
 

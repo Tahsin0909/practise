@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useVerifyOTPMutation } from "@/redux/api/user/userApi";
+import { useRouter } from "next/navigation";
 
 const otpSchema = z.object({
     otp: z
@@ -15,7 +17,8 @@ const otpSchema = z.object({
 
 export default function OtpVerification() {
     const [isLoading, setIsLoading] = useState(false);
-
+    const [verifyOTP] = useVerifyOTPMutation(); // Hook for OTP verification
+    const router = useRouter()
     const {
         handleSubmit,
         register,
@@ -28,9 +31,14 @@ export default function OtpVerification() {
     async function onSubmit(values: z.infer<typeof otpSchema>) {
         setIsLoading(true);
         try {
-            console.log("OTP Submitted:", values.otp);
+            // Call the API with the OTP
+            const email = localStorage.getItem("email")
+            const response = await verifyOTP({ email: email, otp: values.otp }); // Adjust email as needed
+            console.log("OTP Verification Response:", response);
+            router.push("/logIn")
+            // Handle success (e.g., navigate to a new page or show success message)
         } catch (error) {
-            console.error(error);
+            console.error("OTP verification failed:", error);
         } finally {
             setIsLoading(false);
         }

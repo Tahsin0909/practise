@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useSignupMutation } from "@/redux/api/user/userApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -11,13 +13,14 @@ const formSchema = z.object({
     email: z
         .string()
         .email("Please enter a valid email address")
-        .refine(
-            (email) => {
-                const domain = email.split("@")[1];
-                return domain === "gmail.com" || domain === "yahoo.com";
-            },
-            { message: "Only Gmail and Yahoo email addresses are allowed" }
-        ),
+    //     .refine(
+    //         (email) => {
+    //             const domain = email.split("@")[1];
+    //             return domain === "gmail.com" || domain === "yahoo.com";
+    //         },
+    //         { message: "Only Gmail and Yahoo email addresses are allowed" }
+    // ),
+    ,
     password: z
         .string()
         .min(8, "Password must be at least 8 characters")
@@ -29,13 +32,13 @@ const formSchema = z.object({
 });
 
 export default function SignupForm() {
-    const [isLoading, setIsLoading] = useState(false);
-
+    const [signup, { isLoading }] = useSignupMutation(); // RTK Query Hook
+    const router = useRouter()
     const {
         handleSubmit,
         register,
         formState: { errors },
-    } = useForm<z.infer<typeof formSchema>>({
+    } = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
@@ -45,14 +48,19 @@ export default function SignupForm() {
         },
     });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        setIsLoading(true);
+    async function onSubmit(values: any) {
         try {
-            console.log(values);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
+            const response = await signup({
+                name: values.name,
+                email: values.email,
+                password: values.password,
+            }).unwrap();
+            console.log("Signup successful:", response);
+            localStorage.setItem("email", response?.result.email)
+            router.push("/otp")
+        } catch (err: any) {
+            console.error("Signup error:", err);
+            alert(err?.data?.message || "Signup failed");
         }
     }
 
@@ -113,17 +121,19 @@ export default function SignupForm() {
                         {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>}
                     </div>
 
+                    {/* {error && <p className="text-red-500 text-sm">{error.confirmPassword?.message || "Signup failed"}</p>} */}
+
                     <button
                         type="submit"
                         className="w-full p-2 text-white bg-primary/80 hover:bg-primary rounded-xl"
                         disabled={isLoading}
                     >
-                        Sign Up
+                        {isLoading ? "Signing Up..." : "Sign Up"}
                     </button>
                 </form>
 
                 <div className="mt-6 text-center text-sm">
-                    Already have an account?{' '}
+                    Already have an account?{" "}
                     <Link href="/logIn" className="text-blue-500 hover:underline">
                         Log in
                     </Link>
