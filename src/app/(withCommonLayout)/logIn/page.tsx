@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useLoginMutation } from "@/redux/api/user/userApi";
+import { setUser } from "@/redux/slice/authSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import * as z from "zod";
 
 
@@ -20,7 +23,7 @@ const formSchema = z.object({
 export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false);
     const [login] = useLoginMutation();
-
+    const dispatch = useDispatch();
     const {
         handleSubmit,
         register,
@@ -34,17 +37,15 @@ export default function LoginForm() {
         },
     });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(data: any) {
         setIsLoading(true);
         try {
-            const response = await login({
-                email: values.email,
-                password: values.password,
-            }).unwrap();
-            console.log("Login successful:", response);
-            // Handle success (e.g., store token, redirect user)
+            const response = await login(data).unwrap();
+            if (response?.user) {
+                dispatch(setUser({ name: response.user.name, email: response.user.email }));
+            }
         } catch (error) {
-            console.error("Login failed:", error);
+            console.error("Login failed", error);
         } finally {
             setIsLoading(false);
         }
