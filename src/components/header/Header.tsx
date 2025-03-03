@@ -5,9 +5,11 @@
 import CartIcon from "@/feature/cart/CartIcon";
 import { collections } from "@/lib/fakedata/category";
 import { cn } from "@/lib/utils";
+import { RootState } from "@/redux/store";
 import { ChevronDown, ChevronUp, Heart, Menu, Search, User, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +42,7 @@ export default function Navbar() {
             current.includes(categoryId) ? current.filter((id) => id !== categoryId) : [...current, categoryId],
         )
     }
-
+    const user = useSelector((state: RootState) => state.auth);
 
     return (
         <header ref={ref} className="border-b relative bg-white z-50">
@@ -74,13 +76,13 @@ export default function Navbar() {
                             <div className="hover:cursor-pointer">
                                 <CartIcon />
                             </div>
-
-                            <Link href={"/logIn"} className="text-gray-700 hover:text-primary">
-                                <User className="h-6 w-6" />
-                            </Link>
-                            <Link href={"/profile"} className="text-gray-700 hover:text-primary p-1 border rounded-full">
-                                <User className="h-6 w-6" />
-                            </Link>
+                            {
+                                user.token ? <Link href={"/profile"} className="text-gray-700 hover:text-primary">
+                                    <User className="h-6 w-6" />
+                                </Link> : <Link href={"/logIn"} className="text-gray-700 hover:text-primary">
+                                    <User className="h-6 w-6" />
+                                </Link>
+                            }
                             <button
                                 className="md:hidden text-gray-700"
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

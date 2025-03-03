@@ -8,8 +8,9 @@ import { RootState } from "@/redux/store";
 const ProfileCard = () => {
     const [isEditing, setIsEditing] = useState(false);
     const user = useSelector((state: RootState) => state.auth);
+
     const [profile, setProfile] = useState({
-        name: "John Doe",
+        name: user?.name,
         lastOrderedAddress: "123 Fashion St, New York, NY",
     });
 
@@ -32,7 +33,7 @@ const ProfileCard = () => {
                 </div>
             </div>
             <div className="pt-12 pb-6 px-6">
-                <h2 className="text-2xl font-bold text-gray-800 text-center">{profile.name}</h2>
+                <h2 className="text-2xl font-bold text-gray-800 text-center capitalize">{profile.name}</h2>
 
                 {isEditing ? (
                     <textarea
