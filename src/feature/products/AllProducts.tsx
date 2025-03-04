@@ -1,5 +1,6 @@
-"use client"
-import Image from "next/image"
+/* eslint-disable @next/next/no-img-element */
+import React from 'react';
+import { Package, Truck, RotateCcw, Calendar, Clock } from 'lucide-react';
 
 const orderedItems = [
     {
@@ -32,66 +33,76 @@ const orderedItems = [
         orderDate: "2024-02-10",
         returnDate: "2024-02-18",
     },
-]
+];
+
+const getStatusIcon = (status: string) => {
+    if (status === "Delivered") return <Package size={16} className="mr-1" />;
+    if (status === "In Transit") return <Truck size={16} className="mr-1" />;
+    return <RotateCcw size={16} className="mr-1" />;
+};
 
 const getStatusClass = (status: string) => {
-    if (status === "Delivered") return "bg-green-500 text-white"
-    if (status === "In Transit") return "bg-yellow-500 text-white"
-    return "bg-red-500 text-white"
-}
+    if (status === "Delivered") return "bg-emerald-100 text-emerald-800";
+    if (status === "In Transit") return "bg-amber-100 text-amber-800";
+    return "bg-rose-100 text-rose-800";
+};
 
 const OrderStatus = () => {
     return (
-        <div className="w-full overflow-x-auto">
-            <table className="w-full min-w-max border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-gray-100 text-left">
-                        <th className="p-2 border border-gray-300">Product</th>
-                        <th className="p-2 border border-gray-300">Quantity</th>
-                        <th className="p-2 border border-gray-300">Price</th>
-                        <th className="p-2 border border-gray-300">Status</th>
-                        <th className="p-2 border border-gray-300">Order Date</th>
-                        <th className="p-2 border border-gray-300">Delivery/Return Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orderedItems.map((item) => (
-                        <tr key={item.id} className="border-b">
-                            <td className="p-2 border border-gray-300">
-                                <div className="flex items-center space-x-4">
-                                    <div className="relative h-16 w-16 overflow-hidden rounded-md">
-                                        <Image
-                                            src={item.imageUrl || "/placeholder.svg"}
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 className="text-xl font-semibold text-gray-800 mb-6">My Orders</h2>
+
+            <div className="space-y-6">
+                {orderedItems.map((item) => (
+                    <div key={item.id} className="bg-gray-50 rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                        <div className="p-4 md:p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div className="flex items-center mb-4 md:mb-0">
+                                    <div className="h-16 w-16 rounded-md overflow-hidden flex-shrink-0 bg-gray-200">
+                                        <img
+                                            src={item.imageUrl}
                                             alt={item.name}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 64px) 100vw, 64px"
+                                            className="h-full w-full object-cover"
                                         />
                                     </div>
-                                    <p className="font-medium truncate max-w-[150px] md:max-w-[200px] lg:max-w-[300px]">
-                                        {item.name}
-                                    </p>
+                                    <div className="ml-4">
+                                        <h3 className="font-medium text-gray-900 mb-1 line-clamp-1">{item.name}</h3>
+                                        <div className="flex items-center text-sm text-gray-500">
+                                            <span className="mr-2">Qty: {item.quantity}</span>
+                                            <span>${item.price.toFixed(2)}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </td>
-                            <td className="p-2 text-center border border-gray-300">{item.quantity}</td>
-                            <td className="p-2 text-center border border-gray-300">${item.price.toFixed(2)}</td>
-                            <td className="p-2 text-center border border-gray-300">
-                                <span className={`px-2 py-1 rounded text-sm ${getStatusClass(item.status)}`}>
-                                    {item.status}
-                                </span>
-                            </td>
-                            <td className="p-2 text-center border border-gray-300">{item.orderDate}</td>
-                            <td className="p-2 text-center border border-gray-300">
-                                {item.status === "Delivered" && item.deliveryDate}
-                                {item.status === "In Transit" && `Est. ${item.estimatedDelivery}`}
-                                {item.status === "Returned" && item.returnDate}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    )
-}
 
-export default OrderStatus
+                                <div className="flex flex-col md:items-end">
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusClass(item.status)}`}>
+                                        {getStatusIcon(item.status)}
+                                        {item.status}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4 mt-2">
+                                <div className="flex flex-col sm:flex-row justify-between text-sm text-gray-500">
+                                    <div className="flex items-center mb-2 sm:mb-0">
+                                        <Calendar size={14} className="mr-1" />
+                                        <span>Ordered: {item.orderDate}</span>
+                                    </div>
+
+                                    <div className="flex items-center">
+                                        <Clock size={14} className="mr-1" />
+                                        {item.status === "Delivered" && <span>Delivered: {item.deliveryDate}</span>}
+                                        {item.status === "In Transit" && <span>Est. Delivery: {item.estimatedDelivery}</span>}
+                                        {item.status === "Returned" && <span>Returned: {item.returnDate}</span>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default OrderStatus;
