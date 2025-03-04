@@ -1,14 +1,15 @@
 "use client"
+import { logout } from '@/redux/slice/authSlice';
+import { RootState } from '@/redux/store';
 import { LogOut, Save, User, UserCircle } from 'lucide-react';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Profile = () => {
+    const user = useSelector((state: RootState) => state.auth);
     const [formData, setFormData] = useState({
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        name: user?.name || "",
+        email: user?.email || "",
     });
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -28,7 +29,11 @@ const Profile = () => {
         setSuccessMessage('Profile updated successfully!');
         setTimeout(() => setSuccessMessage(''), 3000);
     };
+    const dispatch = useDispatch();
 
+    const handleLogout = () => {
+        dispatch(logout()); // Clears the auth state
+    };
 
     return (
         <div className="">
@@ -99,7 +104,8 @@ const Profile = () => {
                                         Save Changes
                                     </button>
                                     <button
-                                        type="submit"
+                                        onClick={handleLogout}
+                                        type="button"
                                         className="inline-flex items-center px-4 py-2 bg-primary/90 text-white rounded-md hover:bg-primary focus:outline-none  focus:ring-2 focus:ring-blue-500 transition-colors"
                                     >
                                         <LogOut size={18} className="mr-2" />

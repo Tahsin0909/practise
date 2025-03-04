@@ -41,9 +41,10 @@ export default function LoginForm() {
         setIsLoading(true);
         try {
             const response = await login(data).unwrap();
-            if (response?.result) {
+            console.log(response);
+            if (response?.success) {
                 console.log(response);
-                dispatch(setUser({ name: response?.result.userInfo.name, email: response?.result.userInfo.email, token: response?.result.accessToken }));
+                dispatch(setUser({ name: response?.data.userInfo.name, email: response?.data.userInfo.email, token: response?.data.accessToken }));
             }
         } catch (error) {
             console.error("Login failed", error);

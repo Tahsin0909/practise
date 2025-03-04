@@ -6,7 +6,7 @@ import CartIcon from "@/feature/cart/CartIcon";
 import { collections } from "@/lib/fakedata/category";
 import { cn } from "@/lib/utils";
 import { RootState } from "@/redux/store";
-import { ChevronDown, ChevronUp, Heart, Menu, Search, User, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Heart, LogIn, Menu, Search, User, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -43,7 +43,7 @@ export default function Navbar() {
         )
     }
     const user = useSelector((state: RootState) => state.auth);
-
+    console.log(user);
     return (
         <header ref={ref} className="border-b relative bg-white z-50">
             {/* Top Bar */}
@@ -79,8 +79,9 @@ export default function Navbar() {
                             {
                                 user.token ? <Link href={"/profile"} className="text-gray-700 hover:text-primary">
                                     <User className="h-6 w-6" />
-                                </Link> : <Link href={"/logIn"} className="text-gray-700 hover:text-primary">
-                                    <User className="h-6 w-6" />
+                                </Link> : <Link href={"/logIn"} className="text-gray-700 hover:text-primary flex items-center">
+                                    <LogIn size={18} className="mr-2" />
+                                    Log In
                                 </Link>
                             }
                             <button
